@@ -1,0 +1,19 @@
+{
+  "name": "appthletics",
+  "version": "0.0.0",
+  "scripts": {
+    "start-server": "nodemon server.js"
+  },
+  "private": true,
+  "dependencies": {
+    "bcrypt": "^3.0.3",
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.3",
+    "core-js": "^2.5.4",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.3.11",
+    "mongoose-unique-validator": "^2.0.2",
+    "nodemon": "^1.19.1"
+  }
+}
