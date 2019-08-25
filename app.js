@@ -14,7 +14,8 @@ const schoolsRoutes = require('./routes/schools');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://alan_g:alng.1jMongo@sportapp-yk7g0.mongodb.net/hisd', { useNewUrlParser: true })
+const connectionString = 'mongodb+srv://alan_g:' + process.env.MONGO_ATLAS_PW + '@sportapp-yk7g0.mongodb.net/hisd';
+mongoose.connect(connectionString, { useNewUrlParser: true })
     .then(() => {
         console.log('Connected to Database!');
     })

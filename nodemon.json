@@ -1,0 +1,6 @@
+{
+    "env": {
+        "MONGO_ATLAS_PW": "alng.1jMongo",
+        "JWT_KEY": "MIIBOAIBAAJAYcLbOY/oUPgKjYY8RxVCwsrOBxdUCq882JY7QR6GVfNyi3CSIL3wF4uHgXFx+UYC5fZTA3c0CIORAJhdbCgwbwIDAQABAkBf8VoxLdhzzlqc9kamBGmWvm5gazahncV7UkUo7YotQxetYbxwW6csbvZIkTeDA2sQ5fbCeCzyrBQNT/+E9d9xAiEAwvvg8H++wlIAnW6tL9u3AZ6hH6+i5S/dMv55fRdXa6UCIQCAWnuu5gmRrMby/apc1G4k2kVF47Xu6Vzbifs54ey/gwIgdifwfYzL6jGLEdvZsyCv25lnBi6Gxd+laZtvv2//l8kCIGxxBhJMlEUZnrTpkCgB6lUEfIaBztJdI3DwcOsEcAuVAiBmTbKvZbJUI2++/iDefBgdlTMmO2rY9HMTHqK7okO1Ng=="
+    }
+}

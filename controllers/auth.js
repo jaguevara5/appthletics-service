@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const User = require('../models/user');
@@ -23,7 +23,7 @@ exports.login = (req, res, next) => {
         }
         const token = jwt.sign(
             { username: fetchedUser.username, userId: fetchedUser.userId }, 
-            privateKEY, 
+            process.env.JWT_KEY, 
             { expiresIn: '1h' }
         );
         res.status(200).json({
