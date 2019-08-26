@@ -1,23 +1,5 @@
 const Category = require('../models/category');
 
-exports.createCatogory = (req, res, next) => {
-    const post = new Category({
-        name: req.body.name
-    });
-    post.save()
-        .then(createdCategory => {
-            res.status(201).json({
-                message: 'success',
-                categoryId: createdCategory._id
-            });
-        })
-        .catch(error => {
-            res.status(500).json({
-                message: 'Creating a catrgory failed.'
-            })
-        });
-}
-
 exports.getCategories = (req, res, next) => {
     Category.find()
     .then((documents) => {
@@ -30,6 +12,24 @@ exports.getCategories = (req, res, next) => {
         res.status(500).json({
             message: "Could not get categories."
         });
+    });
+}
+
+exports.createCatogory = (req, res, next) => {
+    const post = new Category({
+        name: req.body.name
+    });
+    post.save()
+    .then(createdCategory => {
+        res.status(201).json({
+            message: 'success',
+            categoryId: createdCategory._id
+        });
+    })
+    .catch(error => {
+        res.status(500).json({
+            message: 'Creating category failed.'
+        })
     });
 }
 
