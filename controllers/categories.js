@@ -1,7 +1,6 @@
 const Category = require('../models/category');
 
 exports.getCategories = (req, res, next) => {
-    console.log('getting categories....');
     Category.find()
     .then((documents) => {
         res.status(200).json({
@@ -17,10 +16,10 @@ exports.getCategories = (req, res, next) => {
 }
 
 exports.createCatogory = (req, res, next) => {
-    const post = new Category({
+    const category = new Category({
         name: req.body.name
     });
-    post.save()
+    category.save()
     .then(createdCategory => {
         res.status(201).json({
             message: 'success',
