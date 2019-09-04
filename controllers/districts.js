@@ -1,7 +1,7 @@
-const Sport = require('../models/sport');
+const District = require('../models/category');
 
-exports.getSports = (req, res, next) => {
-    Sport.find()
+exports.getDistricts = (req, res, next) => {
+    District.find()
     .then((documents) => {
         res.status(200).json({
             message: 'success',
@@ -10,31 +10,31 @@ exports.getSports = (req, res, next) => {
     })
     .catch(error => {
         res.status(500).json({
-            message: "Could not get sports."
+            message: "Could not get districts."
         });
     });
 }
 
-exports.createSport = (req, res, next) => {
-    const sport = new Sport({
+exports.createDistrict = (req, res, next) => {
+    const district = new District({
         name: req.body.name
     });
-    sport.save()
-    .then(createdSport => {
+    district.save()
+    .then(createdDistrict => {
         res.status(201).json({
             message: 'success',
-            sportId: createdSport._id
+            districtId: createdDistrict._id
         });
     })
     .catch(error => {
         res.status(500).json({
-            message: 'Creating sport failed.'
+            message: 'Creating district failed.'
         })
     });
 }
 
-exports.deleteSports = (req, res, next) => {
-    Sport.deleteMany({ _id: {$in: req.body.sports }})
+exports.deleteDistrict = (req, res, next) => {
+    District.remove({ _id: req.params.id })
     .then(() => {
         res.status(200).json({
             message: 'success'
@@ -42,13 +42,12 @@ exports.deleteSports = (req, res, next) => {
     })
     .catch(error => {
         res.status(500).json({
-            message: 'Deleting sport failed.'
-        })
-    });
+            message: "Could not delete district."
+        });
+    });;
 }
-
-exports.updateSport = (req, res, next) => {
-    Sport.findOne({_id: req.params.id})
+exports.updateDistrict = (req, res, next) => {
+    District.findOne({_id: req.params.id})
     .then((document) => {
         if(!document) {
             res.status(404).send({
@@ -65,14 +64,14 @@ exports.updateSport = (req, res, next) => {
             })
             .catch(err => {
                 res.status(500).json({
-                    message: 'Saving updated sport failed.'
+                    message: 'Saving updated district failed.'
                 })
             });
         }
     })
     .catch(error => {
         res.status(500).json({
-            message: 'Updating sport failed.'
+            message: 'Updating district failed.'
         })
     });
 }
