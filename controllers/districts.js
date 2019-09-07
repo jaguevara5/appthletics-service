@@ -1,4 +1,4 @@
-const District = require('../models/category');
+const District = require('../models/district');
 
 exports.getDistricts = (req, res, next) => {
     District.find()
@@ -46,6 +46,7 @@ exports.deleteDistrict = (req, res, next) => {
         });
     });;
 }
+
 exports.updateDistrict = (req, res, next) => {
     District.findOne({_id: req.params.id})
     .then((document) => {

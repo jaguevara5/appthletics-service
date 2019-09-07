@@ -28,14 +28,19 @@ router.get('', checkAuth, (req, res, next) => {
     });
 });
 
-router.post('/delete', (req, res, next) => {
-    Stadium.deleteMany({ _id: {$in: req.body.stadiums }})
+exports.deleteStadium = (req, res, next) => {
+    Stadium.remove({ _id: req.params.id })
     .then(() => {
         res.status(200).json({
             message: 'success'
         });
-    });
-});
+    })
+    .catch(error => {
+        res.status(500).json({
+            message: "Could not delete stadium."
+        });
+    });;
+}
 
 router.put('/:id', (req, res, next) => {
 

@@ -33,8 +33,8 @@ exports.createSport = (req, res, next) => {
     });
 }
 
-exports.deleteSports = (req, res, next) => {
-    Sport.deleteMany({ _id: {$in: req.body.sports }})
+exports.deleteSport = (req, res, next) => {
+    Sport.remove({ _id: req.params.id })
     .then(() => {
         res.status(200).json({
             message: 'success'
@@ -42,9 +42,9 @@ exports.deleteSports = (req, res, next) => {
     })
     .catch(error => {
         res.status(500).json({
-            message: 'Deleting sport failed.'
-        })
-    });
+            message: "Could not delete sport."
+        });
+    });;
 }
 
 exports.updateSport = (req, res, next) => {
