@@ -7,7 +7,7 @@ const checkAuth = require('../middleware/check-auth');
 const router = express.Router();
 
 router.get('', checkAuth, (req, res, next) => {
-    User.find()
+    User.find({}, null, {sort: {name: 1}})
     .then((documents) => {
         res.status(200).json({
             message: 'success',

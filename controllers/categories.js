@@ -1,7 +1,7 @@
 const Category = require('../models/category');
 
 exports.getCategories = (req, res, next) => {
-    Category.find()
+    Category.find({}, null, {sort: {name: 1}})
     .then((documents) => {
         res.status(200).json({
             message: 'success',

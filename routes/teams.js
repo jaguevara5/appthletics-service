@@ -22,7 +22,7 @@ router.post('', checkAuth, (req, res, next) => {
 });
 
 router.get('', checkAuth, (req, res, next) => {
-    Team.find()
+    Team.find({ district: req.query.district, sport: req.query.sport, category: req.query.category })
     .populate('district')
     .populate('sport')
     .populate('school')

@@ -19,7 +19,7 @@ router.post('', checkAuth, (req, res, next) => {
 });
 
 router.get('', checkAuth, (req, res, next) => {
-    Stadium.find()
+    Stadium.find({}, null, {sort: {name: 1}})
     .then((documents) => {
         res.status(200).json({
             message: 'success',

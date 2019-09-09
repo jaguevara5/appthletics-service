@@ -1,7 +1,7 @@
 const District = require('../models/district');
 
 exports.getDistricts = (req, res, next) => {
-    District.find()
+    District.find({}, null, {sort: {name: 1}})
     .then((documents) => {
         res.status(200).json({
             message: 'success',

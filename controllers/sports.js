@@ -1,7 +1,7 @@
 const Sport = require('../models/sport');
 
 exports.getSports = (req, res, next) => {
-    Sport.find()
+    Sport.find({}, null, {sort: {name: 1}})
     .then((documents) => {
         res.status(200).json({
             message: 'success',
