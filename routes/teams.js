@@ -1,77 +1,14 @@
 const express = require('express');
-
-const Team = require('../models/team');
 const checkAuth = require('../middleware/check-auth');
-
+const TeamsController = require('../controllers/teams');
 const router = express.Router();
 
-router.post('', checkAuth, (req, res, next) => {
-    const post = new Team({
-        name: req.body.name,
-        district: req.body.district,
-        sport: req.body.sport,
-        school: req.body.school,
-        category: req.body.category
-    });
-    post.save().then(createdTeam => {
-        res.status(201).json({
-            message: 'success',
-            teamId: createdTeam._id
-        });
-    });
-});
+router.get('', TeamsController.getTeams);
 
-router.get('', checkAuth, (req, res, next) => {
-    Team.find({ district: req.query.district, sport: req.query.sport, category: req.query.category })
-    .populate('district')
-    .populate('sport')
-    .populate('school')
-    .populate('category')
-    .then((documents) => {
-        res.status(200).json({
-            message: 'success',
-            data: documents
-        });
-    });
-});
+router.post('', checkAuth, TeamsController.createTeam);
 
-router.delete('/:id', (req, res, next) => {
-    Team.deleteOne({ _id: req.params.id })
-    .then(() => {
-        res.status(200).json({
-            message: 'success'
-        });
-    });
-});
+router.delete('/:id', checkAuth, TeamsController.deleteTeam);
 
-router.put('/:id', (req, res, next) => {
-
-    Team.findOne({_id: req.params.id}, (err, foundTeam) => {
-        if(err) {
-            res.status(500).send();
-        } else {
-            if(!foundTeam) {
-                res.status(404).send();
-            } else {
-                foundTeam.name = req.body.name;
-                foundTeam.district = req.body.district;
-                foundTeam.sport = req.body.sport;
-                foundTeam.school = req.body.school;
-                foundTeam.category = req.body.category;
-
-                foundTeam.save((err, updatedTeam) => {
-                    if(err) {
-                        res.status(500).send();
-                    } else {
-                        res.status(200).json({
-                            message: 'success',
-                            data: updatedTeam
-                        });
-                    }
-                });
-            }
-        }
-    });
-});
+router.put('/:id', TeamsController.updateTeam);
 
 module.exports = router;
