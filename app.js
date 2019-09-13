@@ -11,6 +11,7 @@ const districtRoutes = require('./routes/districts');
 const teamRoutes = require('./routes/teams');
 const categoriesRoutes = require('./routes/categories');
 const schoolsRoutes = require('./routes/schools');
+const gamesRoutes = require('./routes/games');
 
 const app = express();
 
@@ -27,16 +28,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, DELETE, OPTIONS, PUT"
-  );
-  next();
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    res.setHeader(
+        "Access-Control-Allow-Methods",
+        "GET, POST, PATCH, DELETE, OPTIONS, PUT"
+    );
+    next();
 });
 
 app.use('/api/sports', sportRoutes);
@@ -47,5 +48,6 @@ app.use('/api/teams', teamRoutes);
 app.use('/api/districts', districtRoutes);
 app.use('/api/categories', categoriesRoutes);
 app.use('/api/schools', schoolsRoutes);
+app.use('/api/games', gamesRoutes);
 
 module.exports = app;
